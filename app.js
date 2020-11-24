@@ -24,18 +24,17 @@ class UI {
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
         const books = storedBooks
         const list = document.getElementById('book-list')
-        const row = document.createElement('tr')
 
         books ? books.forEach(book => {
+            const row = document.createElement('tr')
             row.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
             <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
-          `  
+          `
+          list.appendChild(row)
         }) : ""
-        
-        list.appendChild(row)
     }
 
     static addBookToList(book) {
