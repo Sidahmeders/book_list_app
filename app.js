@@ -20,11 +20,12 @@ class Book {
 // hanles UI tasks
 class UI {
     static displayBooks() {
-        
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
         const books = storedBooks
         const list = document.getElementById('book-list')
+    }
 
+    static StoreNewBook() {
         books ? books.forEach(book => {
             const row = document.createElement('tr')
             row.innerHTML = `
@@ -68,6 +69,7 @@ document
     const book = new Book(title, author, isbn)
 
     UI.addBookToList(book)
+    UI.displayBooks()
 })
 
 // Event: remove a book
