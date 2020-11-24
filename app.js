@@ -59,7 +59,17 @@ class Storage {
 document.addEventListener('DOMContentLoaded', UI.displayBooks)
 
 // Event: Add a Book
+document.getElementById('book-form')
+        .addEventListener('submit', e => {
+            // get values
+            const title = document.getElementById('title').value
+            const author = document.getElementById('author').value
+            const isbn = document.getElementById('isbn').value
+            
+            const book = new Book(title, author, isbn)
 
+            UI.addBookToList(book)
+        })
 
 // Event: remove a book
 
