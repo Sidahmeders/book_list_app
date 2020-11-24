@@ -39,6 +39,12 @@ class UI {
 
         list.appendChild(row)
     }
+
+    static clearFields() {
+        document.getElementById('title').value = ""
+        document.getElementById('title').value = ""
+        document.getElementById('title').value = ""
+    }
 }
 
 // Store Class: handles storage
@@ -72,6 +78,8 @@ document
     const book = new Book(title, author, isbn)
 
     UI.addBookToList(book)
+
+    UI.clearFields()
 })
 
 // Event: remove a book
