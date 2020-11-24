@@ -1,4 +1,15 @@
-// Book Class: represent a book
+
+// get the values from the book form-fields
+
+class BookFormFieldsVlues {
+    constructor() {
+        this.title = document.getElementById('title').value
+        this.author = document.getElementById('author').value
+        this.isbn = document.getElementById('isbn').value
+    }
+}
+
+// represent a book
 
 class Book {
     constructor(title, author, isbn) {
@@ -8,7 +19,7 @@ class Book {
     }
 }
 
-// UI Class: hanles UI tasks
+// hanles UI tasks
 
 class UI {
     static displayBooks() {
@@ -41,13 +52,12 @@ class UI {
     }
 
     static clearFields() {
-        document.getElementById('title').value = ""
-        document.getElementById('title').value = ""
-        document.getElementById('title').value = ""
+        let { title, author, isbn } = new BookFormFieldsVlues()
+        title = author = isbn = ""
     }
 }
 
-// Store Class: handles storage
+// handles storage
 
 class Storage {
     constructor(bookForm) {
@@ -70,15 +80,10 @@ document
 document
 .getElementById('book-form')
 .addEventListener('submit', e => {
-    // get values
-    const title = document.getElementById('title').value
-    const author = document.getElementById('author').value
-    const isbn = document.getElementById('isbn').value
-    
+    const { title, author, isbn } = new BookFormFieldsVlues()
     const book = new Book(title, author, isbn)
 
     UI.addBookToList(book)
-
     UI.clearFields()
 })
 
