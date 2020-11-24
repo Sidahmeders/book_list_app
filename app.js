@@ -21,12 +21,9 @@ class Book {
 class UI {
     static displayBooks() {
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
-        const books = storedBooks
         const list = document.getElementById('book-list')
-    }
 
-    static StoreNewBook() {
-        books ? books.forEach(book => {
+        storedBooks ? storedBooks.forEach(book => {
             const row = document.createElement('tr')
             row.innerHTML = `
             <td>${book.title}</td>
