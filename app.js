@@ -36,6 +36,8 @@ class UI {
           <td>${book.isbn}</td>
           <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
         `
+
+        list.appendChild(row)
     }
 }
 
@@ -54,12 +56,10 @@ class Storage {
 
 // Event: display Books
 
+document.addEventListener('DOMContentLoaded', UI.displayBooks)
 
 // Event: Add a Book
 
-class AddBook {
-    constructor(event, book) {}
-}
 
 // Event: remove a book
 
