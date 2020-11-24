@@ -1,6 +1,5 @@
 
 // get the values from the book form-fields
-
 class BookFormFieldsVlues {
     constructor() {
         this.title = document.getElementById('title').value
@@ -10,7 +9,6 @@ class BookFormFieldsVlues {
 }
 
 // represent a book
-
 class Book {
     constructor(title, author, isbn) {
         this.title = title
@@ -20,7 +18,6 @@ class Book {
 }
 
 // hanles UI tasks
-
 class UI {
     static displayBooks() {
         const storedBooks = [
@@ -58,7 +55,6 @@ class UI {
 }
 
 // handles storage
-
 class Storage {
     constructor(bookForm) {
         this.bookForm = document.getElementById(bookForm)
@@ -71,12 +67,10 @@ class Storage {
 }
 
 // Event: display Books
-
 document
 .addEventListener('DOMContentLoaded', UI.displayBooks)
 
 // Event: Add a Book
-
 document
 .getElementById('book-form')
 .addEventListener('submit', e => {
