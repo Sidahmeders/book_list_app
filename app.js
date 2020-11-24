@@ -20,24 +20,29 @@ class Book {
 // hanles UI tasks
 class UI {
     static displayBooks() {
-        const storedBooks = localStorage.getItem('Books')
-        const books = [JSON.parse(storedBooks)]
-        books ? books.forEach(book => UI.addBookToList(book)) : ""
+        
+        const storedBooks = JSON.parse(localStorage.getItem('Books'))
+        const books = storedBooks
+        const list = document.getElementById('book-list')
+        
+        books ? books.forEach(book => {
+            const row = document.createElement('tr')
+            row.innerHTML = `
+            <td>${book.title}</td>
+            <td>${book.author}</td>
+            <td>${book.isbn}</td>
+            <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
+          `
+          list.appendChild(row)
+        }) : ""
+        
     }
 
     static addBookToList(book) {
-        const list = document.getElementById('book-list')
-        const row = document.createElement('tr')
-
-        localStorage.setItem('Books', JSON.stringify(book))
-
-        row.innerHTML = `
-          <td>${book.title}</td>
-          <td>${book.author}</td>
-          <td>${book.isbn}</td>
-          <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
-        `
-        list.appendChild(row)
+        let storedBooks = JSON.parse(localStorage.getItem('Books'))
+        storedBooks = storedBooks ? storedBooks : []
+        storedBooks.push(book)
+        localStorage.setItem('Books', JSON.stringify(storedBooks))        
     }
 
     static clearFields() {
@@ -71,6 +76,7 @@ document
 
     UI.addBookToList(book)
     UI.clearFields()
+    UI.displayBooks()
 })
 
 // Event: remove a book
