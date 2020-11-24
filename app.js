@@ -20,23 +20,16 @@ class Book {
 // hanles UI tasks
 class UI {
     static displayBooks() {
-        const storedBooks = [
-            {
-                title: "book one",
-                author: "jhon doe",
-                isbn: "7353"
-            }
-        ]
-
-        const books = storedBooks
-
-        books.forEach(book => UI.addBookToList(book))
+        const storedBooks = localStorage.getItem('Books')
+        const books = [JSON.parse(storedBooks)]
+        books ? books.forEach(book => UI.addBookToList(book)) : ""
     }
 
     static addBookToList(book) {
         const list = document.getElementById('book-list')
-        
         const row = document.createElement('tr')
+
+        localStorage.setItem('Books', JSON.stringify(book))
 
         row.innerHTML = `
           <td>${book.title}</td>
@@ -44,7 +37,6 @@ class UI {
           <td>${book.isbn}</td>
           <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
         `
-
         list.appendChild(row)
     }
 
