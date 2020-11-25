@@ -22,6 +22,10 @@ class UI {
     static displayBooks() {
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
         const list = document.getElementById('book-list')
+        // const newList = document.createElement('tbody')
+        // let att = document.createAttribute("class")
+        // att.value = "table table-striped mt-5"
+        // newList.setAttributeNode(att)
 
         storedBooks ? storedBooks.forEach((book, index) => {
             const row = document.createElement('tr')
@@ -34,7 +38,7 @@ class UI {
           `
           list.append(row)
         }) : ""
-        
+        // document.getElementById('table').replaceWith(newList, list)
     }
 
     static addBookToList(book) {
