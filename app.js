@@ -2,9 +2,9 @@
 // get the values from the form-fields
 class BookFormFieldsVlues {
     constructor() {
-        this.title = document.getElementById('title').value
-        this.author = document.getElementById('author').value
-        this.isbn = document.getElementById('isbn').value
+        this.title = document.getElementById('title')
+        this.author = document.getElementById('author')
+        this.isbn = document.getElementById('isbn')
     }
 }
 
@@ -63,9 +63,12 @@ class UI {
         localStorage.setItem('Books', JSON.stringify(storedBooks))
     }
 
+    // clear the form input fields
     static clearFormFeilds() {
+        // get the feild values
         let { title, author, isbn } = new BookFormFieldsVlues()
-        title = author = isbn = ""
+        // then and set them to an empty-string
+        title.value = author.value = isbn.value = ""
     }
 }
 
@@ -77,9 +80,11 @@ document
 document
 .getElementById('book-form')
 .addEventListener('submit', e => {
+    // get the feild values
     const { title, author, isbn } = new BookFormFieldsVlues()
-    const book = new Book(title, author, isbn)
-
+    // construct a new book from the given values
+    const book = new Book(title.value, author.value, isbn.value)
+    
     UI.addBookToList(book)
     UI.displayBooks()
     UI.clearFormFeilds()
