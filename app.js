@@ -1,5 +1,5 @@
 
-// get the values from the book form-fields
+// get the values from the form-fields
 class BookFormFieldsVlues {
     constructor() {
         this.title = document.getElementById('title').value
@@ -19,31 +19,20 @@ class Book {
 
 // hanles UI tasks
 class UI {
+    // display all the stored-books 
     static displayBooks() {
         // get the array of Books from local-storage
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
-        // create a new tbody element to update the previous one with the new data
+        // create a new tbody node to update the previous node with the new data
         const newList = document.createElement('tbody')
         // add attributes (id & class) to the tbody node
         newList.setAttribute('id', 'book-list')
         newList.setAttribute('class', 'table table-striped mt-5')
 
-        // -------------
-        // create new attributes for the tbody element
-        // let idAtt = document.createAttribute("id")
-        // let classAtt = document.createAttribute("class")
-        // // set the values of the new created attributes
-        // idAtt.value = "book-list"
-        // classAtt.value = "table table-striped mt-5"
-        // // add the new attributes (id & class) to the tbody node
-        // newList.setAttributeNode(classAtt)
-        // newList.setAttributeNode(idAtt)
-        //--------------
-
         // check if there is some books stored in local-storage
         // then loop through each book-object of the stored bookBook Array
         storedBooks ? storedBooks.forEach((book, index) => {
-            // create a new table-row element 
+            // create a new table-row node
             const row = document.createElement('tr')
             // set a key attribute of the index to use for (update|delete|etc..)
             row.setAttribute('key', index)
@@ -54,16 +43,23 @@ class UI {
             <td>${book.isbn}</td>
             <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
           `
+          // append the new populated table-row to the table-body node
           newList.append(row)
         }) : ""
 
+        // finally replace the old-tbody node with the latest-tbody node
         document.getElementById('book-list').replaceWith(newList)
     }
 
+    // add a new book to the local-storage list of Books
     static addBookToList(book) {
+        // get the all the books from local-storage
         let storedBooks = JSON.parse(localStorage.getItem('Books'))
+        // check if the stored-books is not null
         storedBooks = storedBooks ? storedBooks : []
+        // then push a new book to the list
         storedBooks.push(book)
+        // finally rewrite the Books in local-storage with a new added book
         localStorage.setItem('Books', JSON.stringify(storedBooks))
     }
 }
