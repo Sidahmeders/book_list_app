@@ -20,15 +20,21 @@ class Book {
 // hanles UI tasks
 class UI {
     static displayBooks() {
+        // get the array of books from local-storage
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
+        // create a new tbody element to update the previous one with the new data
         const newList = document.createElement('tbody')
+        // create new attributes for the tbody element
         let idAtt = document.createAttribute("id")
         let classAtt = document.createAttribute("class")
+        // set the values of the new created attributes
         idAtt.value = "book-list"
         classAtt.value = "table table-striped mt-5"
+        // add the new attributes (id & class) to the tbody node
         newList.setAttributeNode(classAtt)
         newList.setAttributeNode(idAtt)
 
+        // check if the new 
         storedBooks ? storedBooks.forEach((book, index) => {
             const row = document.createElement('tr')
             row.setAttribute('key', index)
