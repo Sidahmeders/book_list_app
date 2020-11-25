@@ -69,19 +69,7 @@ class UI {
     }
 }
 
-// handles storage
-class Storage {
-    constructor(bookForm) {
-        this.bookForm = document.getElementById(bookForm)
-    }
-    
-    storeBooks(book) {
-        
-    }
-}
-
 // Event: display Books
-
 document
 .addEventListener('DOMContentLoaded', UI.displayBooks)
 
