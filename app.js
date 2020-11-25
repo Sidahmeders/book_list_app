@@ -21,11 +21,13 @@ class Book {
 class UI {
     static displayBooks() {
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
-        const list = document.getElementById('book-list')
-        // const newList = document.createElement('tbody')
-        // let att = document.createAttribute("class")
-        // att.value = "table table-striped mt-5"
-        // newList.setAttributeNode(att)
+        const newList = document.createElement('tbody')
+        let idAtt = document.createAttribute("id")
+        let classAtt = document.createAttribute("class")
+        idAtt.value = "book-list"
+        classAtt.value = "table table-striped mt-5"
+        newList.setAttributeNode(classAtt)
+        newList.setAttributeNode(idAtt)
 
         storedBooks ? storedBooks.forEach((book, index) => {
             const row = document.createElement('tr')
@@ -36,9 +38,10 @@ class UI {
             <td>${book.isbn}</td>
             <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
           `
-          list.append(row)
+          newList.append(row)
         }) : ""
-        // document.getElementById('table').replaceWith(newList, list)
+
+        document.getElementById('book-list').replaceWith(newList)
     }
 
     static addBookToList(book) {
