@@ -62,6 +62,11 @@ class UI {
         // finally rewrite the Books in local-storage with a new added book
         localStorage.setItem('Books', JSON.stringify(storedBooks))
     }
+
+    static clearFormFeilds() {
+        let { title, author, isbn } = new BookFormFieldsVlues()
+        title = author = isbn = ""
+    }
 }
 
 // handles storage
@@ -89,6 +94,7 @@ document
 
     UI.addBookToList(book)
     UI.displayBooks()
+    UI.clearFormFeilds()
 })
 
 // Event: remove a book
