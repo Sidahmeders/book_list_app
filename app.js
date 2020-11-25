@@ -20,24 +20,34 @@ class Book {
 // hanles UI tasks
 class UI {
     static displayBooks() {
-        // get the array of books from local-storage
+        // get the array of Books from local-storage
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
         // create a new tbody element to update the previous one with the new data
         const newList = document.createElement('tbody')
-        // create new attributes for the tbody element
-        let idAtt = document.createAttribute("id")
-        let classAtt = document.createAttribute("class")
-        // set the values of the new created attributes
-        idAtt.value = "book-list"
-        classAtt.value = "table table-striped mt-5"
-        // add the new attributes (id & class) to the tbody node
-        newList.setAttributeNode(classAtt)
-        newList.setAttributeNode(idAtt)
+        // add attributes (id & class) to the tbody node
+        newList.setAttribute('id', 'book-list')
+        newList.setAttribute('class', 'table table-striped mt-5')
 
-        // check if the new 
+        // -------------
+        // create new attributes for the tbody element
+        // let idAtt = document.createAttribute("id")
+        // let classAtt = document.createAttribute("class")
+        // // set the values of the new created attributes
+        // idAtt.value = "book-list"
+        // classAtt.value = "table table-striped mt-5"
+        // // add the new attributes (id & class) to the tbody node
+        // newList.setAttributeNode(classAtt)
+        // newList.setAttributeNode(idAtt)
+        //--------------
+
+        // check if there is some books stored in local-storage
+        // then loop through each book-object of the stored bookBook Array
         storedBooks ? storedBooks.forEach((book, index) => {
+            // create a new table-row element 
             const row = document.createElement('tr')
+            // set a key attribute of the index to use for (update|delete|etc..)
             row.setAttribute('key', index)
+            // append some td elements with the book-data (title|author|etc..)
             row.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author}</td>
