@@ -34,10 +34,6 @@ class UI {
         storedBooks ? storedBooks.forEach((book, index) => {
             // create a new table-row node
             const row = document.createElement('tr')
-            // set a key attribute of the index to use for (update|delete|etc..)
-            let rr = row.getElementsByClassName('delete').item(0)
-            console.log(rr)
-            // rr.setAttribute('key', index)
             // append some td elements with the book-data (title|author|etc..)
             row.innerHTML = `
             <td>${book.title}</td>
@@ -45,6 +41,8 @@ class UI {
             <td>${book.isbn}</td>
             <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
           `
+          // set a key attribute equal to the index for reference when (update|delete|etc..)
+          row.getElementsByClassName('delete').item(0).setAttribute('key', index)
           // append the new populated table-row to the table-body node
           newList.append(row)
         }) : ""
@@ -74,7 +72,7 @@ class UI {
     }
 
     static deleteBookFromTheList(key) {
-
+        
     }
 }
 
