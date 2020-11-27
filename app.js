@@ -39,7 +39,7 @@ class UI {
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
-            <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
+            <td><a href="#" onclick="${this.deleteBookFromTheList()}" class="btn btn-danger btn-sm delete">del</a></td>
           `
           // set a key attribute equal to the index for reference when (update|delete|etc..)
           row.getElementsByClassName('delete').item(0).setAttribute('key', index)
@@ -72,7 +72,9 @@ class UI {
     }
 
     static deleteBookFromTheList(key) {
-        
+        const storedBooks = JSON.parse(localStorage.getItem('Books'))
+
+        // storedBooks.forEach(book => console.log(book , "to delete"))
     }
 }
 
