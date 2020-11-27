@@ -64,14 +64,6 @@ class UI {
         document.getElementById('book-form').reset()
     }
 
-    // // clear the form input fields
-    // static clearFormFeilds() {
-    //     // get the feild values
-    //     let { title, author, isbn } = new BookFormFieldsVlues()
-    //     // then and set them to an empty-string
-    //     title.value = author.value = isbn.value = ""
-    // }
-
     static deleteBookFromTheList(target) {
         if (target.classList.contains('delete')) {
             const key = target.getAttribute('key')
@@ -98,7 +90,6 @@ document
     
     UI.addBookToList(book)
     UI.displayBooks()
-    // UI.clearFormFeilds()
 })
 
 // Event: remove a book
