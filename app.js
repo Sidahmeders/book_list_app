@@ -19,7 +19,7 @@ class Book {
 
 // hanles UI tasks
 class UI {
-    // display all the stored-books 
+    // display all the stored-books in local-storage
     static displayBooks() {
         // get the array of Books from local-storage
         const storedBooks = JSON.parse(localStorage.getItem('Books'))
@@ -50,7 +50,7 @@ class UI {
         document.getElementById('book-list').replaceWith(newList)
     }
 
-    // add a new book to the local-storage list of Books
+    // add a new book to the local-storage list of "Books"
     static addBookToList(book) {
         // get the all the books from local-storage
         let storedBooks = JSON.parse(localStorage.getItem('Books'))
@@ -64,12 +64,19 @@ class UI {
         document.getElementById('book-form').reset()
     }
 
+    // delete a book from local-storage list of "Books"
     static deleteBookFromTheList(target) {
+        // check if the target contain a delete class
         if (target.classList.contains('delete')) {
+            // get the key attribute from the target
             const key = target.getAttribute('key')
+            // get the list of "Books" from local-storage
             const storedBooks = JSON.parse(localStorage.getItem('Books'))
+            // loop through the list of books and remove the book with target-key that eqauls to the index
             const newList = storedBooks.filter((b, index) => index.toString() !== key)
+            // here we save the newList of books to local-storage
             localStorage.setItem('Books', JSON.stringify(newList))
+            // lastlly we relaod the page to reassign the new updated keys for each book in the UI.displaybooks
             location.reload()
         }
     }
