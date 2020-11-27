@@ -35,7 +35,9 @@ class UI {
             // create a new table-row node
             const row = document.createElement('tr')
             // set a key attribute of the index to use for (update|delete|etc..)
-            row.setAttribute('key', index)
+            let rr = row.getElementsByClassName('delete')
+            console.log()
+            // rr.setAttribute('key', index)
             // append some td elements with the book-data (title|author|etc..)
             row.innerHTML = `
             <td>${book.title}</td>
@@ -69,6 +71,10 @@ class UI {
         let { title, author, isbn } = new BookFormFieldsVlues()
         // then and set them to an empty-string
         title.value = author.value = isbn.value = ""
+    }
+
+    static deleteBookFromTheList(key) {
+
     }
 }
 
