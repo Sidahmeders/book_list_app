@@ -97,5 +97,6 @@ document
 
 // Event: remove a book
 document
-.getElementsByClassName('delete')
+.getElementById('book-list')
+.addEventListener('click', e => console.log(e))
 
