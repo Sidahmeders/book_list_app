@@ -73,15 +73,7 @@ class UI {
 
     static deleteBookFromTheList(key) {
         const elements = document.getElementsByClassName('delete')
-
-        elements.forEach(item => {
-            item.onclick = "coolfun"
-        })
-
-        const storedBooks = JSON.parse(localStorage.getItem('Books'))
-
-        storedBooks.forEach(book => console.log(book , "to delete"))
-        console.log(key)
+        
     }
 }
 
@@ -104,4 +96,6 @@ document
 })
 
 // Event: remove a book
+document
+.addEventListener('click', UI.deleteBookFromTheList)
 
