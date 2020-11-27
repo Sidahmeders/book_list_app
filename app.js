@@ -72,7 +72,7 @@ class UI {
     }
 
     static deleteBookFromTheList(key) {
-        const elements = document.getElementsByClassName('delete')
+        console.log('seven deadlly sins')
         
     }
 }
@@ -97,5 +97,5 @@ document
 
 // Event: remove a book
 document
-.addEventListener('click', UI.deleteBookFromTheList)
+.getElementsByClassName('delete')
 
