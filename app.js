@@ -93,10 +93,10 @@ document
     UI.addBookToList(book)
     UI.displayBooks()
     UI.clearFormFeilds()
+    // document.getElementById('book-form').reset()
 })
 
 // Event: remove a book
 document
 .getElementById('book-list')
-.addEventListener('click', e => console.log(e))
-
+.addEventListener('click', UI.deleteBookFromTheList)
