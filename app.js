@@ -102,11 +102,12 @@ document
 })
 
 // Event: remove a book
-document
-.addEventListener('DOMContentLoaded', () => {
-    document
-    .getElementById('book-list')
-    .addEventListener('click', e => UI.deleteBookFromTheList(e.target))
+const events = ['DOMContentLoaded', 'submit']
+
+events.forEach(evt => {
+    document.addEventListener(evt, () => {
+        document
+        .getElementById('book-list')
+        .addEventListener('click', e => UI.deleteBookFromTheList(e.target))
+    })
 })
-
-
