@@ -39,14 +39,13 @@ class UI {
             <td>${book.title}</td>
             <td>${book.author}</td>
             <td>${book.isbn}</td>
-            <td><a href="#" class="btn btn-danger btn-sm delete">del</a></td>
+            <td><button class="btn btn-danger btn-sm delete">del</button></td>
           `
           // set a key attribute equal to the index for reference when (update|delete|etc..)
           row.getElementsByClassName('delete').item(0).setAttribute('key', index)
           // append the new populated table-row to the table-body node
           newList.append(row)
         }) : ""
-
         // finally replace the old-tbody node with the latest-tbody node
         document.getElementById('book-list').replaceWith(newList)
     }
@@ -61,19 +60,26 @@ class UI {
         storedBooks.push(book)
         // finally rewrite the Books in local-storage with a new added book
         localStorage.setItem('Books', JSON.stringify(storedBooks))
+        // and clear the form input fields
+        document.getElementById('book-form').reset()
     }
 
-    // clear the form input fields
-    static clearFormFeilds() {
-        // get the feild values
-        let { title, author, isbn } = new BookFormFieldsVlues()
-        // then and set them to an empty-string
-        title.value = author.value = isbn.value = ""
-    }
+    // // clear the form input fields
+    // static clearFormFeilds() {
+    //     // get the feild values
+    //     let { title, author, isbn } = new BookFormFieldsVlues()
+    //     // then and set them to an empty-string
+    //     title.value = author.value = isbn.value = ""
+    // }
 
-    static deleteBookFromTheList(key) {
-        console.log('seven deadlly sins')
-        
+    static deleteBookFromTheList(target) {
+        if (target.classList.contains('delete')) {
+            const key = target.getAttribute('key')
+            const storedBooks = JSON.parse(localStorage.getItem('Books'))
+            const newList = storedBooks.filter((b, index) => index.toString() !== key)
+            localStorage.setItem('Books', JSON.stringify(newList))
+            location.reload()
+        }
     }
 }
 
@@ -92,11 +98,15 @@ document
     
     UI.addBookToList(book)
     UI.displayBooks()
-    UI.clearFormFeilds()
-    // document.getElementById('book-form').reset()
+    // UI.clearFormFeilds()
 })
 
 // Event: remove a book
 document
-.getElementById('book-list')
-.addEventListener('click', UI.deleteBookFromTheList)
+.addEventListener('DOMContentLoaded', () => {
+    document
+    .getElementById('book-list')
+    .addEventListener('click', e => UI.deleteBookFromTheList(e.target))
+})
+
+
