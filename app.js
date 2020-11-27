@@ -35,8 +35,8 @@ class UI {
             // create a new table-row node
             const row = document.createElement('tr')
             // set a key attribute of the index to use for (update|delete|etc..)
-            let rr = row.getElementsByClassName('delete')
-            console.log()
+            let rr = row.getElementsByClassName('delete').item(0)
+            console.log(rr)
             // rr.setAttribute('key', index)
             // append some td elements with the book-data (title|author|etc..)
             row.innerHTML = `
