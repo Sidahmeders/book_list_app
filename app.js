@@ -83,8 +83,8 @@ class UI {
 
     // notify the user when (add|delete) a book
     static notifiyOn_add_delete_Book(text) {
-        const textNode = document.createElement('span').innerHTML = 'text'
-        document.appendChild(textNode)
+        const textNode = document.createElement('span').innerHTML = text
+        document.body.appendChild(textNode)
     }
 }
 
@@ -103,6 +103,7 @@ document
     
     UI.addBookToList(book)
     UI.displayBooks()
+    UI.notifiyOn_add_delete_Book('new book has been added')
 })
 
 // Event: remove a book
