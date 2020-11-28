@@ -80,6 +80,12 @@ class UI {
             location.reload()
         }
     }
+
+    // notify the user when (add|delete) a book
+    static notifiyOn_add_delete_Book(text) {
+        const textNode = document.createElement('span').innerHTML = 'text'
+        document.appendChild(textNode)
+    }
 }
 
 // Event: display Books
