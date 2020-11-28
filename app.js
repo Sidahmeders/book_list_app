@@ -83,10 +83,9 @@ class UI {
 
     // notify the user when (add|delete) a book
     static notifiyOn_add_delete_Book(text) {
-        var spanNode = document.createElement('span')
-        var textnode = document.createTextNode(text)
-        spanNode.appendChild(textnode)
-        document.getElementById('container').appendChild(spanNode)
+        let newNode = document.createElement('span').innerHTML = text
+       
+        document.getElementById('book-form').append(newNode)
     }
 }
 
