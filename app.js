@@ -82,12 +82,13 @@ class UI {
     }
 
     // notify the user when (add|delete) a book
-    static notifiyOn_add_delete_Book(message) {
-        let alertNode = document.createElement('div').innerHTML = message
+    static notifiyOn_add_delete_Book(message, bootstarpClassAlert) {
+        const alertNode = document.createElement('div')
+        //.innerHTML = message
         alertNode.setAttribute('role', 'alert')
-        alertNode.setAttribute('class', 'alert alert-danger')
+        alertNode.setAttribute('class', `alert ${bootstarpClassAlert}`)
 
-        document.getElementById('book-form').append(alertNode)
+        document.getElementById('alert').replaceWith(alertNode)
     }
 }
 
@@ -106,7 +107,7 @@ document
     
     UI.addBookToList(book)
     UI.displayBooks()
-    UI.notifiyOn_add_delete_Book('new book has been added')
+    UI.notifiyOn_add_delete_Book('new book has been added', 'alert-success')
 })
 
 // Event: remove a book
