@@ -85,11 +85,15 @@ class UI {
 
     // notify the user when (add|delete) a book
     static alert(message, bootstarpAlertClass) {
+        // create a div element to append
         const alertNode = document.createElement('div')
+        // add a bootstarp attributes to the div-element
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
+        // add a text-message to the div-element
         alertNode.innerText = message
 
+        // replace the empty-div with the new-created div-element
         document.getElementById('alert').replaceWith(alertNode)
     }
 }
