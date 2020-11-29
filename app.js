@@ -82,11 +82,11 @@ class UI {
     }
 
     // notify the user when (add|delete) a book
-    static notifiyOn_add_delete_Book(message, bootstarpClassAlert) {
+    static notifiyOn_add_delete_Book(message, bootstarpAlertClass) {
         const alertNode = document.createElement('div')
         //.innerHTML = message
         alertNode.setAttribute('role', 'alert')
-        alertNode.setAttribute('class', `alert ${bootstarpClassAlert}`)
+        alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
 
         document.getElementById('alert').replaceWith(alertNode)
     }
