@@ -87,7 +87,7 @@ class UI {
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', 'alert alert-danger')
 
-        document.getElementById('book-form').append(newNode)
+        document.getElementById('book-form').append(alertNode)
     }
 }
 
