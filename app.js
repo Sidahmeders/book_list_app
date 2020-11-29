@@ -78,8 +78,6 @@ class UI {
             localStorage.setItem('Books', JSON.stringify(newList))
             // display a delete alert
             UI.alert('book has been deleted', 'alert-danger')
-            // lastlly we relaod the page to reassign the new updated keys for each book in the UI.displaybooks
-            location.reload()
         }
     }
 
@@ -90,11 +88,23 @@ class UI {
         // add a bootstarp attributes to the div-element
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
+        alertNode.setAttribute('id', 'alert')
         // add a text-message to the div-element
         alertNode.innerText = message
 
         // replace the empty-div with the new-created div-element
         document.getElementById('alert').replaceWith(alertNode)
+        // finally setTimeOut to remove the alert after 3 seconds
+        setTimeout(() => {
+            // create empty div-element 
+            const emptyDiv = document.createElement('div')
+            // set the id attribute for later-use
+            emptyDiv.setAttribute('id', 'alert')
+            // replace the alert-div with an empty-div
+            document.getElementById('alert').replaceWith(emptyDiv)
+            // lastlly we relaod the page to reassign the new updated keys for each book and update the screen-UI
+            location.reload()
+        }, 3000)
     }
 }
 
@@ -106,6 +116,7 @@ document
 document
 .getElementById('book-form')
 .addEventListener('submit', e => {
+    e.preventDefault()
     // get the feild values
     const { title, author, isbn } = new BookFormFieldsVlues()
     // construct a new book from the given values
