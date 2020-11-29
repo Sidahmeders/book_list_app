@@ -82,9 +82,11 @@ class UI {
     }
 
     // notify the user when (add|delete) a book
-    static notifiyOn_add_delete_Book(text) {
-        let newNode = document.createElement('span').innerHTML = text
-       
+    static notifiyOn_add_delete_Book(message) {
+        let alertNode = document.createElement('div').innerHTML = message
+        alertNode.setAttribute('role', 'alert')
+        alertNode.setAttribute('class', 'alert alert-danger')
+
         document.getElementById('book-form').append(newNode)
     }
 }
