@@ -84,9 +84,9 @@ class UI {
     // notify the user when (add|delete) a book
     static notifiyOn_add_delete_Book(message, bootstarpAlertClass) {
         const alertNode = document.createElement('div')
-        //.innerHTML = message
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
+        alertNode.innerText = message
 
         document.getElementById('alert').replaceWith(alertNode)
     }
@@ -113,8 +113,8 @@ document
 // Event: remove a book
 const events = ['DOMContentLoaded', 'submit']
 
-events.forEach(evt => {
-    document.addEventListener(evt, () => {
+events.forEach(event => {
+    document.addEventListener(event, () => {
         document
         .getElementById('book-list')
         .addEventListener('click', e => UI.deleteBookFromTheList(e.target))
