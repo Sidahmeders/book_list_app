@@ -77,14 +77,14 @@ class UI {
             // here we save the newList of books to local-storage
             localStorage.setItem('Books', JSON.stringify(newList))
             // display a delete alert
-            UI.
+            UI.alert('book has been deleted', 'alert-danger')
             // lastlly we relaod the page to reassign the new updated keys for each book in the UI.displaybooks
             location.reload()
         }
     }
 
     // notify the user when (add|delete) a book
-    static alertUser(message, bootstarpAlertClass) {
+    static alert(message, bootstarpAlertClass) {
         const alertNode = document.createElement('div')
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
@@ -109,7 +109,7 @@ document
     
     UI.addBookToList(book)
     UI.displayBooks()
-    UI.notifiyOn_add_delete_Book('new book has been added', 'alert-success')
+    UI.alert('new book has been added', 'alert-success')
 })
 
 // Event: remove a book
