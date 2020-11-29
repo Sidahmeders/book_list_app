@@ -76,13 +76,15 @@ class UI {
             const newList = storedBooks.filter((b, index) => index.toString() !== key)
             // here we save the newList of books to local-storage
             localStorage.setItem('Books', JSON.stringify(newList))
+            // display a delete alert
+            UI.
             // lastlly we relaod the page to reassign the new updated keys for each book in the UI.displaybooks
             location.reload()
         }
     }
 
     // notify the user when (add|delete) a book
-    static notifiyOn_add_delete_Book(message, bootstarpAlertClass) {
+    static alertUser(message, bootstarpAlertClass) {
         const alertNode = document.createElement('div')
         alertNode.setAttribute('role', 'alert')
         alertNode.setAttribute('class', `alert ${bootstarpAlertClass}`)
