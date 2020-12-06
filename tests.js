@@ -29,15 +29,19 @@ var permute = function(nums) {
   
   const DFS = (nums, path, used, perm) => {
     if (path.length == nums.length) {
+      // make a deep copy since otherwise we'd be append the same list over and over
       perm.push(Array.from(path))
       return
     }
 
     for (let i = 0; i < nums.length; i++) {
+      // skip used numbers
       if (used[i]) continue
-      path.push(nums[i])
+      // add numbers to permutation, mark numbers as used
+      path.push(nums[i])  // path = [1, 2, 3]
       used[i] = true
       DFS(nums, path, used, perm)
+      // remove numbers from permutation, mark numbers as unused
       path.pop()
       used[i] = false
     }
