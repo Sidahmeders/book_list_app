@@ -26,11 +26,27 @@
  */
 var permute = function(nums) {
   let perm = []
-   
   
+  const DFS = (nums, path, used, perm) => {
+    if (path.length == nums.length) {
+      perm.push(Array.from(path))
+      return
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      if (used[i]) continue
+      path.push(nums[i])
+      used[i] = true
+      DFS(nums, path, used, perm)
+      path.pop()
+      used[i] = false
+    }
+  }
+  
+  DFS(nums, [], Array.from(nums).fill(false), perm)
+
   return perm
 }
 
 
-
-console.log(maxArea([1,8,6,2,5,4,8,3,7]))
+console.log(permute([1,2,3]))
