@@ -22,23 +22,21 @@
  * @return {number}
  */
 var minPathSum = function(grid) {
-  const i = grid.length - 1
-  const j = grid[0].length - 1
-  
-  for(let k = 0; k <= i; ++k) {
-      for(let l = 0; l <= j; ++l) {
-          if(k > 0 && l > 0)
-              grid[k][l] = Math.min(grid[k][l] + grid[k][l - 1], grid[k - 1][l] + grid[k][l])
-          else if(k > 0 || l > 0) {
-              if(l > 0)
-                  grid[k][l] += grid[k][l - 1]
-              else
-                  grid[k][l] += grid[k - 1][l]
-              }   
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (i && j) {
+        grid[i][j] += Math.min(grid[i-1][j], grid[i][j-1])
       }
+      else if (i || j) {
+        if (i) grid[i][j] += grid[i-1][j]
+        if (j) grid[i][j] += grid[i][j-1]
+      }
+    }
   }
-  
-  return grid[i][j]
+    console.log(grid)
+
+  return grid[grid.length-1][grid[0].length-1]
 }
+
 
 console.log(permute([1,2,3]))
