@@ -43,7 +43,15 @@ n == code.length
  * @return {number[]}
  */
 var decrypt = function(code, k) {
-    
+
+  let result = []
+
+  for (let code of codes) {
+    if (code > 0) ""
+    if (code < 0) ""
+    if (code == 0) "" 
+  }
+
 }
 
 console.log(decrypt([5,7,1,4], 3))
