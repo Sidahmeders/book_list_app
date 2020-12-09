@@ -1,38 +1,47 @@
 // write your leetcode tests here
 /*
-You have a bomb to defuse, and your time is running out! Your informer will provide you 
-with a circular array code of length of n and a key k.
-To decrypt the code, you must replace every number. All the numbers are replaced simultaneously.
+  A conveyor belt has packages that must be shipped from one port to another within D days.
+  The i-th package on the conveyor belt has a weight of weights[i].  Each day, we load the ship 
+  with packages on the conveyor belt (in the order given by weights). We may not load more weight 
+  than the maximum weightcapacity of the ship.
+  Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being 
+  shipped within D days.
 
-If k > 0, replace the ith number with the sum of the next k numbers.
-If k < 0, replace the ith number with the sum of the previous k numbers.
-If k == 0, replace the ith number with 0.
-As code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is code[n-1].
+  Example 1:
+  Input: weights = [1,2,3,4,5,6,7,8,9,10], D = 5
+  Output: 15
+  Explanation: 
+  A ship capacity of 15 is the minimum to ship all the packages in 5 days like this:
+  1st day: 1, 2, 3, 4, 5
+  2nd day: 6, 7
+  3rd day: 8
+  4th day: 9
+  5th day: 10
 
-Given the circular array code and an integer key k, return the decrypted code to defuse the bomb!
+  Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the
+  packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed. 
 
-Example 1:
-Input: code = [5,7,1,4], k = 3
-Output: [12,10,16,13]
-Explanation: Each number is replaced by the sum of the next 3 numbers. 
-The decrypted code is [7+1+4, 1+4+5, 4+5+7, 5+7+1]. Notice that the numbers wrap around.
+  Example 2:
+  Input: weights = [3,2,2,4,1,4], D = 3
+  Output: 6
+  Explanation: 
+  A ship capacity of 6 is the minimum to ship all the packages in 3 days like this:
+  1st day: 3, 2
+  2nd day: 2, 4
+  3rd day: 1, 4
 
-Example 2:
-Input: code = [1,2,3,4], k = 0
-Output: [0,0,0,0]
-Explanation: When k is zero, the numbers are replaced by 0.
-
-Example 3:
-Input: code = [2,4,9,3], k = -2
-Output: [12,5,6,13]
-Explanation: The decrypted code is [3+9, 2+3, 4+2, 9+4]. Notice that the numbers wrap around again.
-If k is negative, the sum is of the previous numbers.
-
-Constraints:
-n == code.length
-1 <= n <= 100
-1 <= code[i] <= 100
--(n - 1) <= k <= n - 1
+  Example 3:
+  Input: weights = [1,2,3,1,1], D = 4
+  Output: 3
+  Explanation: 
+  1st day: 1
+  2nd day: 2
+  3rd day: 3
+  4th day: 1, 1
+  
+  Constraints:
+  1 <= D <= weights.length <= 50000
+  1 <= weights[i] <= 500
 */
 
 // your pseudo-code goes here
@@ -40,45 +49,13 @@ n == code.length
 */
 
 /**
- * @param {number[]} code
- * @param {number} k
- * @return {number[]}
+ * @param {number[]} weights
+ * @param {number} D
+ * @return {number}
  */
 
-var decrypt = function(code, k) {
-  if (k == 0) return code.map(n => n = 0)
-
-  let result = []
-
-  if (k > 0) {
-    for (let i = 0; i < code.length; i++) {
-      let j = i+1
-      let count = 0
-      let sum = 0
-      while (k > count) {
-        if (j === code.length) j = 0
-        sum += code[j]
-        count++
-        j++
-      }
-      result.push(sum)
-    }
-  } else {
-    for (let i = 0; i < code.length; i++) {
-      let j = i -1
-      let count = 0
-      let sum = 0
-      while (Math.abs(k) > count) {
-        if (j < 0) j = code.length-1
-        sum += code[j]
-        count++
-        j--
-      }
-      result.push(sum)
-    }
-  }
-
-  return result
+var shipWithinDays = function(weights, D) {
+    
 }
 
-console.log(decrypt([5,7,1,4], 0))
+console.log(shipWithinDays())
