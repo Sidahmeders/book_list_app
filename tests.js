@@ -1,5 +1,7 @@
 // write your leetcode tests here
 /*
+You have a bomb to defuse, and your time is running out! Your informer will provide you 
+with a circular array code of length of n and a key k.
 To decrypt the code, you must replace every number. All the numbers are replaced simultaneously.
 
 If k > 0, replace the ith number with the sum of the next k numbers.
@@ -42,16 +44,41 @@ n == code.length
  * @param {number} k
  * @return {number[]}
  */
+
 var decrypt = function(code, k) {
+  if (k == 0) return code.map(n => n = 0)
 
   let result = []
 
-  for (let code of codes) {
-    if (code > 0) ""
-    if (code < 0) ""
-    if (code == 0) "" 
+  if (k > 0) {
+    for (let i = 0; i < code.length; i++) {
+      let j = i+1
+      let count = 0
+      let sum = 0
+      while (k > count) {
+        if (j === code.length) j = 0
+        sum += code[j]
+        count++
+        j++
+      }
+      result.push(sum)
+    }
+  } else {
+    for (let i = 0; i < code.length; i++) {
+      let j = i -1
+      let count = 0
+      let sum = 0
+      while (Math.abs(k) > count) {
+        if (j < 0) j = code.length-1
+        sum += code[j]
+        count++
+        j--
+      }
+      result.push(sum)
+    }
   }
 
+  return result
 }
 
-console.log(decrypt([5,7,1,4], 3))
+console.log(decrypt([5,7,1,4], 0))
