@@ -54,8 +54,31 @@
  * @return {number}
  */
 
+ // days = D
+ // wieghts = wieghts[i]
+ // ship_capacity = ??
+
 var shipWithinDays = function(weights, D) {
+  let left = Math.max(...weights) // max = 10
+  let right = Math.floor(weights.reduce((a,b) => a+b)) // sum = 55
+
+  while (left < right) {
+    let mid = Math.floor((left + right)/2) // mid = 32 
+    let needed = 1
+    let current = 0
+
+    for (let i = 0; i < weights.length; i++) {
+      if (current + weights[i] > mid) {
+        needed++
+        current = weights[i]
+      } else current += weights[i]
+    }
     
+    if (needed > D) left = mid+1
+    else right = mid
+  }
+
+  return left
 }
 
-console.log(shipWithinDays())
+console.log(shipWithinDays([1,2,3,4,5,6,7,8,9,10], 5))
