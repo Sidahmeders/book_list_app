@@ -22,10 +22,34 @@ Constraints:
  * @param {number} n
  * @return {string[][]}
  */
+
+const solveRow = (row, columns) => {
+    let comb = []
+    for (let i = 0; i < row.length; i++) {
+        if (columns[i] !== "Q") comb.push("Q")
+        else comb.push(".")
+    }
+    return comb
+}
+
 var solveNQueens = function(n) {
+    let board = Array(n).fill().map(()=>Array(n).fill(""))
+
+    // making choices
+    let columns = []
+    board.forEach(row => {
+        solveRow(row, columns)
+    })
     
+    // constraint
+
+    // seting the base-case
+
+    // goal
+
+    return board
 }
 
 
 
-console.log()
+console.log(solveNQueens(4))
