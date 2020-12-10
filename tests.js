@@ -25,8 +25,14 @@ The total number of nodes is between [0, 10^4]
  * @param {Node} root
  * @return {number[]}
  */
-var preorder = function(root) {
-    
+var preorder = function(root, res= []) {
+  if (!root) return []
+  
+  res.push(root.val)
+  if (root.children) {
+      root.children.forEach(child => preorder(child, res)) 
+  }
+  return res
 }
 
 console.log(shipWithinDays([1,2,3,4,5,6,7,8,9,10], 5))
