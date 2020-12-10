@@ -1,84 +1,32 @@
 // write your leetcode tests here
 /*
-  A conveyor belt has packages that must be shipped from one port to another within D days.
-  The i-th package on the conveyor belt has a weight of weights[i].  Each day, we load the ship 
-  with packages on the conveyor belt (in the order given by weights). We may not load more weight 
-  than the maximum weightcapacity of the ship.
-  Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being 
-  shipped within D days.
+Given an n-ary tree, return the preorder traversal of its nodes' values.
+Nary-Tree input serialization is represented in their level order traversal, 
+each group of children is separated by the null value (See examples).
 
-  Example 1:
-  Input: weights = [1,2,3,4,5,6,7,8,9,10], D = 5
-  Output: 15
-  Explanation: 
-  A ship capacity of 15 is the minimum to ship all the packages in 5 days like this:
-  1st day: 1, 2, 3, 4, 5
-  2nd day: 6, 7
-  3rd day: 8
-  4th day: 9
-  5th day: 10
+Follow up:
+Recursive solution is trivial, could you do it iteratively?
 
-  Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the
-  packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed. 
+Example 1:
+Input: root = [1,null,3,2,4,null,5,6]
+Output: [1,3,5,6,2,4]
 
-  Example 2:
-  Input: weights = [3,2,2,4,1,4], D = 3
-  Output: 6
-  Explanation: 
-  A ship capacity of 6 is the minimum to ship all the packages in 3 days like this:
-  1st day: 3, 2
-  2nd day: 2, 4
-  3rd day: 1, 4
+Example 2:
+Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+Output: [1,2,3,6,7,11,14,4,8,12,5,9,13,10]
 
-  Example 3:
-  Input: weights = [1,2,3,1,1], D = 4
-  Output: 3
-  Explanation: 
-  1st day: 1
-  2nd day: 2
-  3rd day: 3
-  4th day: 1, 1
-  
-  Constraints:
-  1 <= D <= weights.length <= 50000
-  1 <= weights[i] <= 500
-*/
+Constraints:
+The height of the n-ary tree is less than or equal to 1000
+The total number of nodes is between [0, 10^4]
 
-// your pseudo-code goes here
-/*
 */
 
 /**
- * @param {number[]} weights
- * @param {number} D
- * @return {number}
+ * @param {Node} root
+ * @return {number[]}
  */
-
- // days = D
- // wieghts = wieghts[i]
- // ship_capacity = ??
-
-var shipWithinDays = function(weights, D) {
-  let left = Math.max(...weights) // max = 10
-  let right = Math.floor(weights.reduce((a,b) => a+b)) // sum = 55
-
-  while (left < right) {
-    let mid = Math.floor((left + right)/2) // mid = 32 
-    let needed = 1
-    let current = 0
-
-    for (let i = 0; i < weights.length; i++) {
-      if (current + weights[i] > mid) {
-        needed++
-        current = weights[i]
-      } else current += weights[i]
-    }
+var preorder = function(root) {
     
-    if (needed > D) left = mid+1
-    else right = mid
-  }
-
-  return left
 }
 
 console.log(shipWithinDays([1,2,3,4,5,6,7,8,9,10], 5))
