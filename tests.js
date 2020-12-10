@@ -25,13 +25,20 @@ The total number of nodes is between [0, 10^4]
  * @param {Node} root
  * @return {number[]}
  */
-var preorder = function(root, res= []) {
-  if (!root) return []
+var preorder = function(root) {
+  let res = []
+  let stack = []
+  if (!root) return res
   
-  res.push(root.val)
-  if (root.children) {
-      root.children.forEach(child => preorder(child, res)) 
+  stack.push(root)
+  while (stack.length) {
+      let node = stack.pop()
+      res.push(node.val)
+      for (let i = node.children.length-1; i >= 0; i--) {
+          stack.push(node.children[i])
+      }
   }
+  
   return res
 }
 
