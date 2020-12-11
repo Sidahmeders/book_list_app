@@ -48,26 +48,28 @@ var solveNQueens = function(n) {
     let digonal2 = new Set()
     let res = []
 
-    const placeQueens = i => {
-        if (i == board.length-1) res.push(board)
-        console.log(i, board.length)
+    const placeQueens = (i, col) => {
+        let placedQueens = 0
+        if (i == board.length-1 && placedQueens == 4) res.push(board)
 
-        for (let j = 0; j < board[i].length; j++) {
+        for (let j = col; j < board[i].length; j++) {
             if (!columns.has(j) && !rows.has(i) && !digonal1.has(i+j) && !digonal2.has(j-i)) {
                 board[i][j] = "Q"
                 columns.add(j)
                 rows.add(i)
                 digonal1.add(i+j)
                 digonal2.add(j-i)
+                placedQueens++
             } else {
                 board[i][j] = "."
             }
         }
-
     }
 
     for (let i = 0; i < board.length; i++) {
-        placeQueens(i)
+        for (let col = 0; col < board[i].length; i++) {
+            placeQueens(i, col)
+        }
     }
 
     return res
