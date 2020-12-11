@@ -22,42 +22,31 @@ Constraints:
  * @param {number} n
  * @return {string[][]}
  */
+/*
+  >> make a choice
+  >> recuse or backtrack if no solution exist
+  >> set my constraint
+  >> set the base-case
+  i have to solve for each row
+    loop through each column of the row
+      check if the there is no vertical or digonal column holding that postion
+      if so to place the queen : else move to the next column in a row 
+      if we reach the end of the row and there is no valid position for the queen we backtrack
+      if we reach the end and all queens are placed that means we have a valid board placment
+      and we push that to the result 
+      and we keep going from the last postion of the first row and we check if there is another solution
+      until we hit the base-case
+    we check if we reached the end of the borad aka(the last row && column) we return
+*/
 
-const placeQueens = (board, i, diagonal1, diagonal2, vertical) => {
-    if (i == board.length) return addToList(board)
-    
-    for (let j = 0; j < board.length; j++) {
-        if (!diagonal1.has(i+j) && !diagonal2.has(j-i) && !vertical.has(j)) {
-            board[i][j] = 1
-            diagonal1.add(i+j)
-            diagonal2.add(j-i)
-            vertical.add(j)
-            placeQueens(board, i+1, diagonal1, diagonal2, vertical)
-            board[i][j] = 0
-            diagonal1.delete(i+j)
-            diagonal2.delete(j-i)
-            vertical.delete(j)
-        }
-    }
-}
-
-const addToList = board => {
-    let arr = []
-    for (let i = 0; i < board.length; i++) {
-        let tmp = ""
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i[j] == 0]) tmp += "."
-            else tmp += "Q"
-        }
-        arr.push(tmp)
-    }
-    return arr
+const placeQueens = (board, row) => {
 }
 
 var solveNQueens = function(n) {
     let board = new Array(n).fill().map(() => Array(n).fill(''))
+    let res = []
 
-    return placeQueens(board, 0, new Set(), new Set(), new Set())
+    return res
 }
 
 
