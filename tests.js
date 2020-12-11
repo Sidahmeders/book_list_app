@@ -24,23 +24,18 @@ Constraints:
  */
 
 const placeQueens = (board, i, diagonal1, diagonal2, vertical) => {
-    if (i == board.length) {
-        // base case do something..
-        return addToList(board)
-    }
-    console.log('_____')
+    if (i == board.length) return addToList(board)
     
     for (let j = 0; j < board.length; j++) {
-        console.log(board)
-        if (!diagonal1.has(i+j) && !diagonal2.has(i-j) && !vertical.has(j)) {
+        if (!diagonal1.has(i+j) && !diagonal2.has(j-i) && !vertical.has(j)) {
             board[i][j] = 1
             diagonal1.add(i+j)
-            diagonal2.add(i-j)
+            diagonal2.add(j-i)
             vertical.add(j)
             placeQueens(board, i+1, diagonal1, diagonal2, vertical)
             board[i][j] = 0
             diagonal1.delete(i+j)
-            diagonal2.delete(i-j)
+            diagonal2.delete(j-i)
             vertical.delete(j)
         }
     }
@@ -64,7 +59,6 @@ var solveNQueens = function(n) {
 
     return placeQueens(board, 0, new Set(), new Set(), new Set())
 }
-
 
 
 console.log(solveNQueens(4))
