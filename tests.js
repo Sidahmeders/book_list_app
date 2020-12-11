@@ -23,31 +23,46 @@ Constraints:
  * @return {string[][]}
  */
 
-const solveRow = (row, columns) => {
-    let comb = []
-    for (let i = 0; i < row.length; i++) {
-        if (columns[i] !== "Q") comb.push("Q")
-        else comb.push(".")
+const placeQueens = (board, i, diagonal1, diagonal2, vertical) => {
+    if (i == board.length) {
+        // base case do something..
+        return addToList(board)
     }
-    return comb
+    console.log('_____')
+    
+    for (let j = 0; j < board.length; j++) {
+        console.log(board)
+        if (!diagonal1.has(i+j) && !diagonal2.has(i-j) && !vertical.has(j)) {
+            board[i][j] = 1
+            diagonal1.add(i+j)
+            diagonal2.add(i-j)
+            vertical.add(j)
+            placeQueens(board, i+1, diagonal1, diagonal2, vertical)
+            board[i][j] = 0
+            diagonal1.delete(i+j)
+            diagonal2.delete(i-j)
+            vertical.delete(j)
+        }
+    }
+}
+
+const addToList = board => {
+    let arr = []
+    for (let i = 0; i < board.length; i++) {
+        let tmp = ""
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i[j] == 0]) tmp += "."
+            else tmp += "Q"
+        }
+        arr.push(tmp)
+    }
+    return arr
 }
 
 var solveNQueens = function(n) {
-    let board = Array(n).fill().map(()=>Array(n).fill(""))
+    let board = new Array(n).fill().map(() => Array(n).fill(''))
 
-    // making choices
-    let columns = []
-    board.forEach(row => {
-        solveRow(row, columns)
-    })
-    
-    // constraint
-
-    // seting the base-case
-
-    // goal
-
-    return board
+    return placeQueens(board, 0, new Set(), new Set(), new Set())
 }
 
 
