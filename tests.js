@@ -26,29 +26,25 @@ nums[i] will be an integer between 0 and 49,999.
 */
 
 var findShortestSubArray = function(nums) {
-    let num_counts = new Map();  // hash map to keep count of each number
-    let degree = 0;              // initalize degree to 0
+    let num_counts = new Map();
+    let degree = 0;
     
-    let first_seen = new Map();  // hash map keep track of first time we see the number
+    let first_seen = new Map();
     let min_length = 0;
     
-    for (let i= 0; i<= nums.length; i++){    // loop through the numbers 
+    for (let i= 0; i<= nums.length; i++){
         if(!first_seen.has(nums[i])){   
-            first_seen.set(nums[i], i);  // mark the index of first occurance
+            first_seen.set(nums[i], i);
         }
         
-        // key: current number
-        // value: count of number( if nums is in map we get the current count or if not count equals 0 then we increment + 1)
-         num_counts.set(nums[i], (num_counts.has(nums[i]) ? num_counts.get(nums[i]) : 0) + 1)  
-        
-        // if count > degree then we update the degree
+        num_counts.set(nums[i], (num_counts.has(nums[i]) ? num_counts.get(nums[i]) : 0) + 1)  
+
         if(num_counts.get(nums[i]) > degree){
             degree = num_counts.get(nums[i]);
-            min_length = i - first_seen.get(nums[i]) + 1;     // subtract occurance (max) from first occurance to see the 
-        } else if (num_counts.get(nums[i]) === degree){      // if number is equal to degree
+            min_length = i - first_seen.get(nums[i]) + 1;
+        } else if (num_counts.get(nums[i]) === degree){
             min_length = Math.min(min_length, i - first_seen.get(nums[i])+ 1); 
         }
-        
     }
     return min_length;
 }
