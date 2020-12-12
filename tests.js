@@ -41,32 +41,7 @@ Constraints:
 
 var solveNQueens = function(n) {
     let board = new Array(n).fill().map(() => Array(n).fill(''))
-    let columns = new Set()
-    let rows = new Set()
-    let digonal1 = new Set()
-    let digonal2 = new Set()
     let res = []
-
-    const placeQueens = i => {
-        if (i == board.length-1) res.push(board)
-        console.log(i, board.length)
-
-        for (let j = 0; j < board[i].length; j++) {
-            if (!columns.has(j) && !rows.has(i) && !digonal1.has(i+j) && !digonal2.has(j-i)) {
-                board[i][j] = "Q"
-                columns.add(j)
-                rows.add(i)
-                digonal1.add(i+j)
-                digonal2.add(j-i)
-            } else {
-                board[i][j] = "."
-            }
-        }
-    }
-
-    for (let i = 0; i < board.length; i++) {
-        placeQueens(i)
-    }
 
     return res
 }
