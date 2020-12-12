@@ -35,9 +35,23 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  */
+
 var maxSubArray = function(nums) {
+    if (nums.length == 1) return nums[0]
+    let sum = -Infinity
+    let bestSum = -Infinity
+
+    while (nums.length) {
+        if (nums[0] > sum && nums[0] >= 0 && sum < 0) sum = nums[0]
+        else if (nums[0] > sum && nums[0] < 0) sum = nums[0]
+        else sum += nums[0]
+        if (sum > bestSum) bestSum = sum
+        nums = nums.slice(1, nums.length)
+    }
     
+    return bestSum
 }
 
 
-console.log(totalNQueens(4))
+console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6.
+console.log(maxSubArray([1,2])) // 3
