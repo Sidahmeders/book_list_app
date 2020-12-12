@@ -39,6 +39,8 @@ Constraints:
     we check if we reached the end of the borad aka(the last row && column) we return
 */
 
+const placeQueens = () => {}
+
 var solveNQueens = function(n) {
     let board = new Array(n).fill().map(() => Array(n).fill(''))
     let res = []
