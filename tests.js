@@ -4,7 +4,7 @@ Given a non-empty array of non-negative integers nums, the degree of this array 
 frequency of any one of its elements.
 Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same degree as nums.
 
-Example 1:
+Example:
 Input: nums = [1,2,2,3,1]
 Output: 2
 Explanation: 
@@ -13,7 +13,7 @@ Of the subarrays that have the same degree:
 [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
 The shortest length is 2. So return 2.
 
-Example 2:
+Example:
 Input: nums = [1,2,2,3,1,4,2]
 Output: 6
 Explanation: 
@@ -25,27 +25,28 @@ nums.length will be between 1 and 50,000.
 nums[i] will be an integer between 0 and 49,999.
 */
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-
-var maxSubArray = function(nums) {
-    if (nums.length == 1) return nums[0]
-    let sum = -Infinity
-    let bestSum = -Infinity
+var findShortestSubArray = function(nums) {
+    let degree = 0
+    let repeated = new Set()
+    let subArr = {}
 
     while (nums.length) {
         let n = nums[0]
-        if (n > sum && n >= 0 && sum < 0) sum = n
-        else if (n > sum && n < 0) sum = n
-        else sum += n
-        if (sum > bestSum) bestSum = sum
+
+        if (repeated.has(n)) {    
+            degree++
+            subArr[n]++
+        } else {
+            subArr[n] = 1
+            repeated.add(n)
+        }
+
         nums = nums.slice(1, nums.length)
     }
-    
-    return bestSum
+
+    return [degree, subArr]
 }
 
 
-console.log()
+console.log(findShortestSubArray([1,2,2,3,1])) // degree 2, res 2
+console.log(findShortestSubArray([1,2,2,3,1,4,2])) // degree 3, res 6
