@@ -1,34 +1,28 @@
 // write your leetcode tests here
 /*
-Given an integer array nums, find the contiguous subarray (containing at least one number) 
-which has the largest sum and return its sum.
-Follow up: If you have figured out the O(n) solution, try coding another solution using the 
-divide and conquer approach, which is more subtle.
+Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum 
+frequency of any one of its elements.
+Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same degree as nums.
 
 Example 1:
-Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
-Output: 6
-Explanation: [4,-1,2,1] has the largest sum = 6.
+Input: nums = [1,2,2,3,1]
+Output: 2
+Explanation: 
+The input array has a degree of 2 because both elements 1 and 2 appear twice.
+Of the subarrays that have the same degree:
+[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+The shortest length is 2. So return 2.
 
 Example 2:
-Input: nums = [1]
-Output: 1
-
-Example 3:
-Input: nums = [0]
-Output: 0
-
-Example 4:
-Input: nums = [-1]
-Output: -1
-
-Example 5:
-Input: nums = [-2147483647]
-Output: -2147483647
+Input: nums = [1,2,2,3,1,4,2]
+Output: 6
+Explanation: 
+The degree is 3 because the element 2 is repeated 3 times.
+So [2,2,3,1,4,2] is the shortest subarray, therefore returning 6.
 
 Constraints:
-1 <= nums.length <= 2 * 104
--231 <= nums[i] <= 231 - 1
+nums.length will be between 1 and 50,000.
+nums[i] will be an integer between 0 and 49,999.
 */
 
 /**
@@ -42,9 +36,10 @@ var maxSubArray = function(nums) {
     let bestSum = -Infinity
 
     while (nums.length) {
-        if (nums[0] > sum && nums[0] >= 0 && sum < 0) sum = nums[0]
-        else if (nums[0] > sum && nums[0] < 0) sum = nums[0]
-        else sum += nums[0]
+        let n = nums[0]
+        if (n > sum && n >= 0 && sum < 0) sum = n
+        else if (n > sum && n < 0) sum = n
+        else sum += n
         if (sum > bestSum) bestSum = sum
         nums = nums.slice(1, nums.length)
     }
@@ -53,5 +48,4 @@ var maxSubArray = function(nums) {
 }
 
 
-console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6.
-console.log(maxSubArray([1,2])) // 3
+console.log()
