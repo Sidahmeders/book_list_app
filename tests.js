@@ -1,72 +1,43 @@
 // write your leetcode tests here
 /*
-The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
-Given an integer n, return all distinct solutions to the n-queens puzzle.
-Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' 
-both indicate a queen and an empty space, respectively.
+Given an integer array nums, find the contiguous subarray (containing at least one number) 
+which has the largest sum and return its sum.
+Follow up: If you have figured out the O(n) solution, try coding another solution using the 
+divide and conquer approach, which is more subtle.
 
 Example 1:
-Input: n = 4
-Output: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
-Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
 
 Example 2:
-Input: n = 1
-Output: [["Q"]]
+Input: nums = [1]
+Output: 1
+
+Example 3:
+Input: nums = [0]
+Output: 0
+
+Example 4:
+Input: nums = [-1]
+Output: -1
+
+Example 5:
+Input: nums = [-2147483647]
+Output: -2147483647
 
 Constraints:
-1 <= n <= 9
+1 <= nums.length <= 2 * 104
+-231 <= nums[i] <= 231 - 1
 */
 
 /**
- * @param {number} n
- * @return {string[][]}
+ * @param {number[]} nums
+ * @return {number}
  */
-/*
-  >> make a choice
-  >> recuse or backtrack if no solution exist
-  >> set my constraint
-  >> set the base-case
-  i have to solve for each row
-    loop through each column of the row
-      check if the there is no vertical or digonal column holding that postion
-      if so to place the queen : else move to the next column in a row 
-      if we reach the end of the row and there is no valid position for the queen we backtrack
-      if we reach the end and all queens are placed that means we have a valid board placment
-      and we push that to the result 
-      and we keep going from the last postion of the first row and we check if there is another solution
-      until we hit the base-case
-    we check if we reached the end of the borad aka(the last row && column) we return
-*/
-
-var totalNQueens = function(n) {
-    let res = []
+var maxSubArray = function(nums) {
     
-    const placeQueens = (board, i, diagonal1, diagonal2, verical) => {
-        if (board.length == i) {
-            res.push(board.map(s => s.slice()))
-            return
-        }
-
-        for (let j = 0; j < board.length; j++) {
-            if (!diagonal1.has(i+j) && !diagonal2.has(j-i) && !verical.has(j)) {
-                board[i][j] = "Q"
-                diagonal1.add(i+j)
-                diagonal2.add(j-i)
-                verical.add(j)
-                placeQueens(board, i+1, diagonal1, diagonal2, verical)
-                board[i][j] = "."
-                diagonal1.delete(i+j)
-                diagonal2.delete(j-i)
-                verical.delete(j)
-            }
-        }
-    }
-
-    let board = new Array(n).fill().map(() => Array(n).fill(''))
-    placeQueens(board, 0, new Set(), new Set(), new Set())
-
-    return res.length
 }
+
 
 console.log(totalNQueens(4))
