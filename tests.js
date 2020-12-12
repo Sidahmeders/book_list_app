@@ -42,10 +42,10 @@ var findShortestSubArray = function(nums) {
          num_counts.set(nums[i], (num_counts.has(nums[i]) ? num_counts.get(nums[i]) : 0) + 1)  
         
         // if count > degree then we update the degree
-     if(num_counts.get(nums[i]) > degree){
-         degree = num_counts.get(nums[i]);
-         min_length = i - first_seen.get(nums[i]) + 1;     // subtract occurance (max) from first occurance to see the 
-     } else if (num_counts.get(nums[i]) === degree){      // if number is equal to degree
+        if(num_counts.get(nums[i]) > degree){
+            degree = num_counts.get(nums[i]);
+            min_length = i - first_seen.get(nums[i]) + 1;     // subtract occurance (max) from first occurance to see the 
+        } else if (num_counts.get(nums[i]) === degree){      // if number is equal to degree
             min_length = Math.min(min_length, i - first_seen.get(nums[i])+ 1); 
         }
         
