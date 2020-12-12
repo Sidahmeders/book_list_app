@@ -39,14 +39,32 @@ Constraints:
     we check if we reached the end of the borad aka(the last row && column) we return
 */
 
-const placeQueens = () => {}
+let res = []
+
+const placeQueens = (board, i, diagonal1, diagonal2, verical) => {
+    if (board.length == i) {
+        res.push(board)
+        return res
+    }
+
+    for (let j = 0; j < board.length; j++) {
+        if (!diagonal1.has(i+j) && !diagonal2.has(j-i) && !verical.has(j)) {
+            board[i][j] = "Q"
+            diagonal1.add(i+j)
+            diagonal2.add(j-i)
+            verical.add(j)
+            placeQueens(board, i+1, diagonal1, diagonal2, verical)
+            board[i][j] = "."
+            diagonal1.delete(i+j)
+            diagonal2.delete(j-i)
+            verical.delete(j)
+        }
+    }
+}
 
 var solveNQueens = function(n) {
     let board = new Array(n).fill().map(() => Array(n).fill(''))
-    let res = []
-
-    return res
+    return placeQueens(board, 0, new Set(), new Set(), new Set())
 }
-
 
 console.log(solveNQueens(4))
